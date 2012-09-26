@@ -1,0 +1,306 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7751800B160240BA00A89B24 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7751800A160240BA00A89B24 /* Cocoa.framework */; };
+		7751802D1602414D00A89B24 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7751802C1602414D00A89B24 /* test.cpp */; };
+		775180341602415500A89B24 /* CoreWindow_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 775180311602415500A89B24 /* CoreWindow_mac.mm */; };
+		775180371602417100A89B24 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775180361602417100A89B24 /* OpenGL.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		77518006160240BA00A89B24 /* SimpleUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7751800A160240BA00A89B24 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		7751800D160240BA00A89B24 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		7751800E160240BA00A89B24 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7751800F160240BA00A89B24 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		77518012160240BA00A89B24 /* SimpleUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleUI-Info.plist"; sourceTree = "<group>"; };
+		77518018160240BA00A89B24 /* SimpleUI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleUI-Prefix.pch"; sourceTree = "<group>"; };
+		7751802C1602414D00A89B24 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = ../test.cpp; sourceTree = "<group>"; };
+		7751802F1602415500A89B24 /* CoreWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreWindow.h; sourceTree = "<group>"; };
+		775180301602415500A89B24 /* CoreWindow_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreWindow_mac.h; sourceTree = "<group>"; };
+		775180311602415500A89B24 /* CoreWindow_mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreWindow_mac.mm; sourceTree = "<group>"; };
+		775180361602417100A89B24 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		775180391602430700A89B24 /* glext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
+		7751803A1602430700A89B24 /* icons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icons.h; sourceTree = "<group>"; };
+		7751803B1602430700A89B24 /* mplus1cregular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mplus1cregular.h; sourceTree = "<group>"; };
+		7751803C1602430700A89B24 /* SimpleGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGraphics.h; sourceTree = "<group>"; };
+		7751803D1602430700A89B24 /* SimpleGraphics_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGraphics_impl.h; sourceTree = "<group>"; };
+		7751803E1602430700A89B24 /* SimpleGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGUI.h; sourceTree = "<group>"; };
+		7751803F1602430700A89B24 /* SimpleShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleShader.h; sourceTree = "<group>"; };
+		775180401602430700A89B24 /* SimpleTex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTex.h; sourceTree = "<group>"; };
+		775180411602430700A89B24 /* SimpleVB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleVB.h; sourceTree = "<group>"; };
+		775180421602430700A89B24 /* skBaseGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skBaseGUI.h; sourceTree = "<group>"; };
+		775180431602430700A89B24 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		77518003160240BA00A89B24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				775180371602417100A89B24 /* OpenGL.framework in Frameworks */,
+				7751800B160240BA00A89B24 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		77517FFB160240BA00A89B24 = {
+			isa = PBXGroup;
+			children = (
+				775180361602417100A89B24 /* OpenGL.framework */,
+				7751802C1602414D00A89B24 /* test.cpp */,
+				775180381602430700A89B24 /* UI */,
+				7751802E1602415500A89B24 /* Core */,
+				77518010160240BA00A89B24 /* SimpleUI */,
+				77518009160240BA00A89B24 /* Frameworks */,
+				77518007160240BA00A89B24 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		77518007160240BA00A89B24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77518006160240BA00A89B24 /* SimpleUI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		77518009160240BA00A89B24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7751800A160240BA00A89B24 /* Cocoa.framework */,
+				7751800C160240BA00A89B24 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7751800C160240BA00A89B24 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7751800D160240BA00A89B24 /* AppKit.framework */,
+				7751800E160240BA00A89B24 /* CoreData.framework */,
+				7751800F160240BA00A89B24 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		77518010160240BA00A89B24 /* SimpleUI */ = {
+			isa = PBXGroup;
+			children = (
+				77518011160240BA00A89B24 /* Supporting Files */,
+			);
+			path = SimpleUI;
+			sourceTree = "<group>";
+		};
+		77518011160240BA00A89B24 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				77518012160240BA00A89B24 /* SimpleUI-Info.plist */,
+				77518018160240BA00A89B24 /* SimpleUI-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7751802E1602415500A89B24 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7751802F1602415500A89B24 /* CoreWindow.h */,
+				775180301602415500A89B24 /* CoreWindow_mac.h */,
+				775180311602415500A89B24 /* CoreWindow_mac.mm */,
+			);
+			name = Core;
+			path = ../Core;
+			sourceTree = "<group>";
+		};
+		775180381602430700A89B24 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7751803E1602430700A89B24 /* SimpleGUI.h */,
+				775180391602430700A89B24 /* glext.h */,
+				7751803A1602430700A89B24 /* icons.h */,
+				7751803B1602430700A89B24 /* mplus1cregular.h */,
+				7751803C1602430700A89B24 /* SimpleGraphics.h */,
+				7751803D1602430700A89B24 /* SimpleGraphics_impl.h */,
+				7751803F1602430700A89B24 /* SimpleShader.h */,
+				775180401602430700A89B24 /* SimpleTex.h */,
+				775180411602430700A89B24 /* SimpleVB.h */,
+				775180421602430700A89B24 /* skBaseGUI.h */,
+				775180431602430700A89B24 /* stb_truetype.h */,
+			);
+			name = UI;
+			path = ../UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		77518005160240BA00A89B24 /* SimpleUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77518024160240BA00A89B24 /* Build configuration list for PBXNativeTarget "SimpleUI" */;
+			buildPhases = (
+				77518002160240BA00A89B24 /* Sources */,
+				77518003160240BA00A89B24 /* Frameworks */,
+				77518004160240BA00A89B24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleUI;
+			productName = SimpleUI;
+			productReference = 77518006160240BA00A89B24 /* SimpleUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		77517FFD160240BA00A89B24 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = kioku;
+			};
+			buildConfigurationList = 77518000160240BA00A89B24 /* Build configuration list for PBXProject "SimpleUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 77517FFB160240BA00A89B24;
+			productRefGroup = 77518007160240BA00A89B24 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				77518005160240BA00A89B24 /* SimpleUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		77518004160240BA00A89B24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77518002160240BA00A89B24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7751802D1602414D00A89B24 /* test.cpp in Sources */,
+				775180341602415500A89B24 /* CoreWindow_mac.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		77518022160240BA00A89B24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		77518023160240BA00A89B24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		77518025160240BA00A89B24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleUI-Prefix.pch";
+				INFOPLIST_FILE = "SimpleUI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		77518026160240BA00A89B24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleUI-Prefix.pch";
+				INFOPLIST_FILE = "SimpleUI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		77518000160240BA00A89B24 /* Build configuration list for PBXProject "SimpleUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77518022160240BA00A89B24 /* Debug */,
+				77518023160240BA00A89B24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77518024160240BA00A89B24 /* Build configuration list for PBXNativeTarget "SimpleUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77518025160240BA00A89B24 /* Debug */,
+				77518026160240BA00A89B24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 77517FFD160240BA00A89B24 /* Project object */;
+}
