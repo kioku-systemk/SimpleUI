@@ -26,17 +26,16 @@
 		775180301602415500A89B24 /* CoreWindow_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreWindow_mac.h; sourceTree = "<group>"; };
 		775180311602415500A89B24 /* CoreWindow_mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreWindow_mac.mm; sourceTree = "<group>"; };
 		775180361602417100A89B24 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		775180391602430700A89B24 /* glext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
-		7751803A1602430700A89B24 /* icons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icons.h; sourceTree = "<group>"; };
-		7751803B1602430700A89B24 /* mplus1cregular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mplus1cregular.h; sourceTree = "<group>"; };
-		7751803C1602430700A89B24 /* SimpleGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGraphics.h; sourceTree = "<group>"; };
-		7751803D1602430700A89B24 /* SimpleGraphics_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGraphics_impl.h; sourceTree = "<group>"; };
-		7751803E1602430700A89B24 /* SimpleGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGUI.h; sourceTree = "<group>"; };
-		7751803F1602430700A89B24 /* SimpleShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleShader.h; sourceTree = "<group>"; };
-		775180401602430700A89B24 /* SimpleTex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTex.h; sourceTree = "<group>"; };
-		775180411602430700A89B24 /* SimpleVB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleVB.h; sourceTree = "<group>"; };
-		775180421602430700A89B24 /* skBaseGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skBaseGUI.h; sourceTree = "<group>"; };
-		775180431602430700A89B24 /* stb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
+		77C4CE061613D2B200AE3AB7 /* icons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = icons.h; sourceTree = "<group>"; };
+		77C4CE071613D2B200AE3AB7 /* mplus1cmedium.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mplus1cmedium.h; sourceTree = "<group>"; };
+		77C4CE091613D2B200AE3AB7 /* SimpleGraphics_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleGraphics_impl.h; sourceTree = "<group>"; };
+		77C4CE0A1613D2B200AE3AB7 /* SimpleGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleGraphics.h; sourceTree = "<group>"; };
+		77C4CE0B1613D2B200AE3AB7 /* simplegui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simplegui.h; sourceTree = "<group>"; };
+		77C4CE0C1613D2B200AE3AB7 /* SimpleShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleShader.h; sourceTree = "<group>"; };
+		77C4CE0D1613D2B200AE3AB7 /* SimpleTex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleTex.h; sourceTree = "<group>"; };
+		77C4CE0E1613D2B200AE3AB7 /* SimpleVB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleVB.h; sourceTree = "<group>"; };
+		77C4CE0F1613D2B200AE3AB7 /* skBaseGUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = skBaseGUI.h; sourceTree = "<group>"; };
+		77C4CE101613D2B200AE3AB7 /* stb_truetype.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,17 +122,16 @@
 		775180381602430700A89B24 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				7751803E1602430700A89B24 /* SimpleGUI.h */,
-				775180391602430700A89B24 /* glext.h */,
-				7751803A1602430700A89B24 /* icons.h */,
-				7751803B1602430700A89B24 /* mplus1cregular.h */,
-				7751803C1602430700A89B24 /* SimpleGraphics.h */,
-				7751803D1602430700A89B24 /* SimpleGraphics_impl.h */,
-				7751803F1602430700A89B24 /* SimpleShader.h */,
-				775180401602430700A89B24 /* SimpleTex.h */,
-				775180411602430700A89B24 /* SimpleVB.h */,
-				775180421602430700A89B24 /* skBaseGUI.h */,
-				775180431602430700A89B24 /* stb_truetype.h */,
+				77C4CE061613D2B200AE3AB7 /* icons.h */,
+				77C4CE071613D2B200AE3AB7 /* mplus1cmedium.h */,
+				77C4CE091613D2B200AE3AB7 /* SimpleGraphics_impl.h */,
+				77C4CE0A1613D2B200AE3AB7 /* SimpleGraphics.h */,
+				77C4CE0B1613D2B200AE3AB7 /* simplegui.h */,
+				77C4CE0C1613D2B200AE3AB7 /* SimpleShader.h */,
+				77C4CE0D1613D2B200AE3AB7 /* SimpleTex.h */,
+				77C4CE0E1613D2B200AE3AB7 /* SimpleVB.h */,
+				77C4CE0F1613D2B200AE3AB7 /* skBaseGUI.h */,
+				77C4CE101613D2B200AE3AB7 /* stb_truetype.h */,
 			);
 			name = UI;
 			path = ../UI;
