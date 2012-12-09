@@ -182,8 +182,8 @@ protected:
 		m_defvb->Update();
 		m_defvb->Draw();
 
-		g->BlendFunc(SG_SRC_COLOR, SG_ONE);//_MINUS_SRC_ALPHA);
-		m_defshader->Bind();
+		g->BlendFunc(SG_ONE, SG_ONE);//_MINUS_SRC_ALPHA);
+        m_defshader->Bind();
 		m_defshader->SetUniform("mono",1.0f);
 		m_defshader->Unbind();
 		const int n = static_cast<int>(m_drawsets.size());
@@ -465,7 +465,6 @@ public:
 		txt.DrawText(text,size,ptr,m_width);
 		m_tex->Unmap();
 		m_mgr->addDrawSet(m_vb, m_tex);
-		
 		//ownDraw(0,0);
 	}
 	~Caption()
