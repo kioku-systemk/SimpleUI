@@ -53,7 +53,6 @@ public:
 #define CoreWindow CoreWindow_wgl
 #else
 #include "CoreWindow_x11.h"
-#define CoreWindow CoreWindow_x11
 #endif
 
 #endif // INCLUDE_CORE_WINDOW_H
