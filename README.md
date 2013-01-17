@@ -1,7 +1,7 @@
 SimpleUI
 ========
 
-OpenGLインターフェースによるシンプルなUI実装
+OpenGLによるシンプルなUI実装
 
 # Platform
 - Windows(Win32)
