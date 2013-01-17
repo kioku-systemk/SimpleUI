@@ -24,7 +24,7 @@ inline void trace(const char* f, ...)
 #endif
 
 
-static CoreWindow_mac* g_mainWin = 0;
+static CoreWindow* g_mainWin = 0;
 
 @interface skMacDelegate : NSObject//  < NSApplicationDelegate >
 /* Example: Fire has the same problem no explanation */
@@ -42,12 +42,12 @@ static CoreWindow_mac* g_mainWin = 0;
 
 @interface skOpenGLWindow : NSWindow
 {
-	CoreWindow_mac* m_ownerWin;
+	CoreWindow* m_ownerWin;
 }
 @end
 
 @implementation skOpenGLWindow
-- (id) initWithContentRect: (NSRect)rect styleMask:(NSUInteger)wndStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)deferFlg win:(CoreWindow_mac*)ownerWin
+- (id) initWithContentRect: (NSRect)rect styleMask:(NSUInteger)wndStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)deferFlg win:(CoreWindow*)ownerWin
 {
 	[super initWithContentRect:rect styleMask:wndStyle backing:bufferingType defer:deferFlg];
 	m_ownerWin = ownerWin;
@@ -93,7 +93,7 @@ static CoreWindow_mac* g_mainWin = 0;
 
 @interface skOpenGLView : NSOpenGLView 
 {
-	CoreWindow_mac* m_ownerWin;
+	CoreWindow* m_ownerWin;
 	int m_width;
 	int m_height;
 	NSTrackingRectTag _tag;
@@ -103,7 +103,7 @@ static CoreWindow_mac* g_mainWin = 0;
 @end
 
 @implementation skOpenGLView
--(void) setOwnerWindow: (CoreWindow_mac*) win
+-(void) setOwnerWindow: (CoreWindow*) win
 {
 	m_isMouseCursorIn = false;
 	m_ownerWin = win;
@@ -396,12 +396,12 @@ void skPollDeviceC(void)
 } // namespace 
 
 
-void CoreWindow_mac::DoEvents()
+void CoreWindow::DoEvents()
 {
 	skPollDeviceC();
 }
 
-void CoreWindow_mac::MainLoop()
+void CoreWindow::MainLoop()
 {
 	while (1)
 	{
@@ -412,7 +412,7 @@ void CoreWindow_mac::MainLoop()
 	}
 }
 
-CoreWindow_mac::CoreWindow_mac(int x, int y, int width ,int height, const char* title)
+CoreWindow::CoreWindow(int x, int y, int width ,int height, const char* title)
 {
 	if (g_mainWin == 0)
 		g_mainWin = this;
@@ -485,22 +485,22 @@ CoreWindow_mac::CoreWindow_mac(int x, int y, int width ,int height, const char* 
 
 }
 
-CoreWindow_mac::~CoreWindow_mac()
+CoreWindow::~CoreWindow()
 {
 
 }
 
-void CoreWindow_mac::Active()
+void CoreWindow::Active()
 {
 	[[m_view openGLContext] makeCurrentContext];
 }
 
-void CoreWindow_mac::SwapBuffer()
+void CoreWindow::SwapBuffer()
 {
     glSwapAPPLE();
 }
 
-void CoreWindow_mac::Toplevel(bool top)
+void CoreWindow::Toplevel(bool top)
 {
 	if (top)
 		[m_win setLevel:NSPopUpMenuWindowLevel];

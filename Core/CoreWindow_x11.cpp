@@ -11,9 +11,18 @@
 #include <GL/glx.h>
 
 #include <X11/Xlib.h>
-//#include <GLXContext.h>
 #include <stdio.h>
 
+class CoreWindow::Impl
+{
+public:
+    Impl(){}
+    ~Impl(){}
+	
+    int m_w, m_h;
+    Window m_win;
+    GLXContext m_ctx;
+};
 
 Display* m_display;
 CoreWindow* g_win = 0;
@@ -89,26 +98,27 @@ bool make_window( Display *dpy, const char *name, int colorbit, int depthbit,
 
 CoreWindow::CoreWindow(int x, int y, int width, int height, const char* title, bool fullscreenMode)
 {
+	m_imp = new Impl();
 	m_display = XOpenDisplay(0);
 	
-	m_w = width;
-	m_h = height;
-	bool r = make_window(m_display, title, 32, 24, width, height, &m_win, &m_ctx);
-	XMapWindow(m_display, m_win);
-	glXMakeCurrent(m_display, m_win, m_ctx);
+	m_imp->m_w = width;
+	m_imp->m_h = height;
+	bool r = make_window(m_display, title, 32, 24, width, height, &m_imp->m_win, &m_imp->m_ctx);
+	XMapWindow(m_display, m_imp->m_win);
+	glXMakeCurrent(m_display, m_imp->m_win, m_imp->m_ctx);
 	g_win = this;
 }
 CoreWindow::~CoreWindow()
 {
     // GL Context
-    if (m_ctx)
+    if (m_imp->m_ctx)
     {
-        glXDestroyContext(m_display, m_ctx);
-		m_ctx = 0;
+        glXDestroyContext(m_display, m_imp->m_ctx);
+		m_imp->m_ctx = 0;
     }
-    if (m_win){
-        XDestroyWindow(m_display, m_win);
-		m_win = 0;
+    if (m_imp->m_win){
+        XDestroyWindow(m_display, m_imp->m_win);
+		m_imp->m_win = 0;
     }
 	
     // XWindow
@@ -117,6 +127,7 @@ CoreWindow::~CoreWindow()
         XCloseDisplay(m_display);
 		m_display = 0;
     }
+	delete m_imp;
 }
 void CoreWindow::Active()
 {
@@ -128,7 +139,7 @@ void CoreWindow::Toplevel(bool top)
 }
 void CoreWindow::SwapBuffer()
 {
-    glXSwapBuffers(m_display, g_win->m_win);
+    glXSwapBuffers(m_display, g_win->m_imp->m_win);
 }
 void CoreWindow::DoEvents(void)
 {
@@ -203,6 +214,16 @@ void CoreWindow::MainLoop(void)
 }
 const char* CoreWindow::GetExePath() const
 {
-	
+    return 0; // TODO:
+}
+
+int CoreWindow::GetWidth() const
+{
+    return m_imp->m_w;
+}
+
+int CoreWindow::GetHeight() const
+{
+    return m_imp->m_h;
 }
 

@@ -9,6 +9,7 @@
 #define INCLUDE_SIMPLESHADER_H
 
 #include "SimpleGraphics.h"
+#include <string.h>
 
 namespace skGUI {
 	

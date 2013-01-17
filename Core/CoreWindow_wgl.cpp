@@ -11,7 +11,7 @@
 #include <gl/GL.h>
 #include <WindowsX.h>
 
-CoreWindow_wgl* g_mainWin = 0;
+CoreWindow* g_mainWin = 0;
 
 #if _UNICODE
 #define _TX(x) L##x
@@ -20,7 +20,7 @@ CoreWindow_wgl* g_mainWin = 0;
 #endif
 
 
-bool CoreWindow_wgl::createWindow(int x, int y, int width, int height, const TCHAR* title)
+bool CoreWindow::createWindow(int x, int y, int width, int height, const TCHAR* title)
 {
 	WNDCLASS wc;
 	HWND     hWnd;
@@ -41,7 +41,7 @@ bool CoreWindow_wgl::createWindow(int x, int y, int width, int height, const TCH
 //		memset(&wcx, 0, sizeof(WNDCLASSEX));
 //		wcx.cbSize			= sizeof(WNDCLASSEX);
 		wc.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-		wc.lpfnWndProc		= (WNDPROC) CoreWindow_wgl::BaseWndProc;
+		wc.lpfnWndProc		= (WNDPROC) CoreWindow::BaseWndProc;
 		wc.cbClsExtra		= 0;
 		wc.cbWndExtra		= 0;
 		wc.hInstance		= GetModuleHandle(NULL);
@@ -88,7 +88,7 @@ bool CoreWindow_wgl::createWindow(int x, int y, int width, int height, const TCH
 	return TRUE;
 }
 
-bool CoreWindow_wgl::initGL(HWND hWnd)
+bool CoreWindow::initGL(HWND hWnd)
 {
 	static	PIXELFORMATDESCRIPTOR pfd =
 	{
@@ -151,7 +151,7 @@ bool CoreWindow_wgl::initGL(HWND hWnd)
 	return TRUE;
 }
 
-void CoreWindow_wgl::Toplevel(bool top)
+void CoreWindow::Toplevel(bool top)
 {
 	if (top)
 	{
@@ -160,19 +160,19 @@ void CoreWindow_wgl::Toplevel(bool top)
 	}
 }
 
-CoreWindow_wgl::CoreWindow_wgl(int x, int y, int width, int height, const TCHAR* title)
+CoreWindow::CoreWindow(int x, int y, int width, int height, const TCHAR* title)
 {
 	 createWindow(x, y, width, height, title);
 	 initGL(m_hWnd);
 	 resize(width, height);
 }
 
-CoreWindow_wgl::~CoreWindow_wgl()
+CoreWindow::~CoreWindow()
 {
 }
 
 
-void CoreWindow_wgl::resize(int width, int height)
+void CoreWindow::resize(int width, int height)
 {
 	glViewport(0, 0, width, height);
 	glLoadIdentity();
@@ -180,13 +180,13 @@ void CoreWindow_wgl::resize(int width, int height)
 	Resize(width, height);
 }
 
-void CoreWindow_wgl::Active()
+void CoreWindow::Active()
 {
 	if (wglGetCurrentContext() != m_hRC)
 		wglMakeCurrent(m_hDC, m_hRC);
 }
 
-void CoreWindow_wgl::DoEvents()
+void CoreWindow::DoEvents()
 {
 	MSG msg;
 	while(1)
@@ -203,7 +203,7 @@ void CoreWindow_wgl::DoEvents()
 	}
 }
 
-void CoreWindow_wgl::MainLoop()
+void CoreWindow::MainLoop()
 {
 	MSG msg;
 	while(1)
@@ -227,7 +227,7 @@ void CoreWindow_wgl::MainLoop()
 
 }
 
-void CoreWindow_wgl::KillGLWindow()
+void CoreWindow::KillGLWindow()
 {
 	if (m_hRC)
 	{
@@ -242,7 +242,7 @@ void CoreWindow_wgl::KillGLWindow()
 }
 
 
-LRESULT CALLBACK CoreWindow_wgl::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK CoreWindow::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
@@ -325,16 +325,16 @@ LRESULT CALLBACK CoreWindow_wgl::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPA
 }
 
 
-LRESULT	CALLBACK CoreWindow_wgl::BaseWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT	CALLBACK CoreWindow::BaseWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	CoreWindow_wgl* pTargetWnd = (CoreWindow_wgl*)GetProp(hWnd, _TX("CoreWindow_wgl"));
+	CoreWindow* pTargetWnd = (CoreWindow*)GetProp(hWnd, _TX("CoreWindow_wgl"));
 
 	if (!pTargetWnd)
 	{
 		if ((uMsg == WM_CREATE) || (uMsg == WM_NCCREATE))
-			pTargetWnd = (CoreWindow_wgl*)((LPCREATESTRUCT)lParam)->lpCreateParams;
+			pTargetWnd = (CoreWindow*)((LPCREATESTRUCT)lParam)->lpCreateParams;
 		else if	( uMsg == WM_INITDIALOG	)
-			pTargetWnd = (CoreWindow_wgl*)lParam;
+			pTargetWnd = (CoreWindow*)lParam;
 
 		//if (pTargetWnd)
 		//	pTargetWnd->Attach(hWnd);
@@ -350,12 +350,12 @@ LRESULT	CALLBACK CoreWindow_wgl::BaseWndProc(HWND hWnd, UINT uMsg, WPARAM wParam
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
 
-HDC CoreWindow_wgl::GetHDC()
+HDC CoreWindow::GetHDC()
 {
 	return m_hDC;
 }
 
-void CoreWindow_wgl::SwapBuffer()
+void CoreWindow::SwapBuffer()
 {
 	SwapBuffers(m_hDC);
 }

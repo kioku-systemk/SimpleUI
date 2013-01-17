@@ -12,7 +12,7 @@
 #include "CoreWindow.h"
 #include <Windows.h>
 
-class CoreWindow_wgl : public CoreWindowPlatform
+class CoreWindow : public CoreWindowPlatform
 {
 protected:
 	bool createWindow(int x, int y, int width, int height, const TCHAR* title);
@@ -28,8 +28,8 @@ protected:
 	HDC   m_hDC;
 
 public:
-	CoreWindow_wgl(int x, int y, int width, int height, const TCHAR* title);
-	~CoreWindow_wgl();
+	CoreWindow(int x, int y, int width, int height, const TCHAR* title);
+	~CoreWindow();
 
 	virtual void MouseLeftDown  (int x, int y){}
 	virtual void MouseLeftUp    (int x, int y){}

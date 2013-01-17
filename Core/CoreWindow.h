@@ -1,6 +1,5 @@
 /*
  *  CoreWindow.h
- *  sk_mt_test
  *
  *  Created by kioku on 10/08/11.
  *  Copyright 2010 System K. All rights reserved.
@@ -9,8 +8,6 @@
 
 #ifndef INCLUDE_CORE_WINDOW_H
 #define INCLUDE_CORE_WINDOW_H
-
-//#include "CoreType.h"
 
 class CoreWindowPlatform
 {
@@ -47,10 +44,8 @@ public:
 
 #if defined (__APPLE__)
 #include "CoreWindow_mac.h"
-#define CoreWindow CoreWindow_mac
 #elif defined(_WIN32)
 #include "CoreWindow_wgl.h"
-#define CoreWindow CoreWindow_wgl
 #else
 #include "CoreWindow_x11.h"
 #endif

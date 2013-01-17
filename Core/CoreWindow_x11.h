@@ -10,10 +10,7 @@
 #define COREWINDOW_X11_HEADER
 
 #include "CoreWindow.h"
-#include <GL/gl.h>
-#include <GL/glx.h>
 
-#include <X11/Xlib.h>
 class CoreWindow : public CoreWindowPlatform
 {
 protected:
@@ -45,15 +42,14 @@ public:
 	static void DoEvents(void);
 	static void MainLoop(void);
     
-    int GetWidth() const  { return m_w; }
-    int GetHeight() const { return m_h; }
+	int GetWidth() const;
+	int GetHeight() const;
     
     const char* GetExePath() const;
 	
 protected:
-    int m_w, m_h;
-    Window m_win;
-    GLXContext m_ctx;
+    class Impl;
+    Impl* m_imp;
 };
 
 void CoreWindow_DoEvents();
