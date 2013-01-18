@@ -1,0 +1,9 @@
+INCS=
+LIBS=-framework OpenGL -framework Cocoa
+
+DEFINES = -g
+CXX=g++
+
+all:
+	$(CXX) $(INCS) $(DEFINES) test.cpp Core/CoreWindow_mac.mm $(LIBS)
+
