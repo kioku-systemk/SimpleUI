@@ -263,12 +263,12 @@ static CoreWindow* g_mainWin = 0;
 - (void) mouseMoved:(NSEvent *)theEvent
 {
 	trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
-	m_ownerWin->MouseMove((int)[theEvent locationInWindow].x, m_height - (int)[theEvent locationInWindow].y);
+		m_ownerWin->MouseMove((int)[theEvent locationInWindow].x, m_height - (int)[theEvent locationInWindow].y);
 }
 
 - (void) mouseDragged:(NSEvent *)theEvent
 {
-	trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
+trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
 	m_ownerWin->MouseMove((int)[theEvent locationInWindow].x, m_height - (int)[theEvent locationInWindow].y);
 }
 
@@ -296,6 +296,12 @@ static CoreWindow* g_mainWin = 0;
 	m_ownerWin->MouseRightUp((int)[theEvent locationInWindow].x,m_height - (int)[theEvent locationInWindow].y);
 }
 
+- (void) rightMouseDragged:(NSEvent *)theEvent
+{
+	trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
+	m_ownerWin->MouseMove((int)[theEvent locationInWindow].x, m_height - (int)[theEvent locationInWindow].y);
+}
+
 - (void) otherMouseDown:(NSEvent *)theEvent
 {
 	trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
@@ -307,6 +313,13 @@ static CoreWindow* g_mainWin = 0;
 	trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
 	m_ownerWin->MouseMiddleUp((int)[theEvent locationInWindow].x,m_height - (int)[theEvent locationInWindow].y);
 }
+
+- (void) otherMouseDragged:(NSEvent *)theEvent
+{
+	trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
+	m_ownerWin->MouseMove((int)[theEvent locationInWindow].x, m_height - (int)[theEvent locationInWindow].y);
+}
+
 
 @end
 
