@@ -163,37 +163,43 @@ public:
 			ownDrawAfter(parent_x, parent_y);
 		}
 	}
-	void MouseDown(int button, int x, int y)
+	bool MouseDown(int button, int x, int y)
 	{
 		if (m_show && m_enable)
 		{
 			transformScale(x,y);
-			ownMouseDown(button, x, y);
+			bool r = false;
             if (isChildEvent(x,y))
             {
                 std::vector< SharedRefPtr<BaseWindow> >::iterator it, eit = m_children.end();
                 for (it = m_children.begin(); it != eit; ++it)
                 {
-                    (*it)->MouseDown(button, x - (*it)->GetX(), y - (*it)->GetY());
+                    r |= (*it)->MouseDown(button, x - (*it)->GetX(), y - (*it)->GetY());
                 }
             }
+			r |= ownMouseDown(button, x, y);
+			return r;
 		}
+		return false;
 	}
-	void MouseUp(int button, int x, int y)
+	bool MouseUp(int button, int x, int y)
 	{
 		if (m_show && m_enable)
 		{
 			transformScale(x,y);
-			ownMouseUp(button, x, y);
+			bool r = false;
 			if (isChildEvent(x,y))
             {
 				std::vector< SharedRefPtr<BaseWindow> >::iterator it, eit = m_children.end();
 				for (it = m_children.begin(); it != eit; ++it)
 				{
-					(*it)->MouseUp(button,  x - (*it)->GetX(), y - (*it)->GetY());
+					r |= (*it)->MouseUp(button,  x - (*it)->GetX(), y - (*it)->GetY());
 				}
 			}
+			r |= ownMouseUp(button, x, y);
+			return r;
 		}
+		return false;
 	}
 	void MouseMove(int x, int y)
 	{
@@ -350,8 +356,8 @@ protected:
 	virtual void ownDraw      (int parent_x, int parent_y) = 0;
 	virtual void ownDrawAfter (int parent_x, int parent_y) {};
 	virtual void ownResized   () {};
-	virtual void ownMouseDown (int button, int x, int y)   = 0;
-	virtual void ownMouseUp   (int button, int x, int y)   = 0;
+	virtual bool ownMouseDown (int button, int x, int y)   = 0;
+	virtual bool ownMouseUp   (int button, int x, int y)   = 0;
 	virtual void ownMouseMove (int x, int y)               = 0;
 	virtual void ownKeyInput  (int key){};
 	virtual void ownKeyDown   (int key){};
@@ -386,8 +392,8 @@ public:
 	}
 	BaseWindow* ownHit(int x, int y){ return NULL; }
 	void ownDraw(int parent_x, int parent_y){};
-	void ownMouseDown(int button, int x, int y){};
-	void ownMouseUp  (int button, int x, int y){};
+	bool ownMouseDown(int button, int x, int y){ return false; };
+	bool ownMouseUp  (int button, int x, int y){ return false; };
 	void ownMouseMove(int x, int y){};
 };
 	
@@ -436,7 +442,7 @@ public:
 		return m_activeWindow;
 	}
 
-	void MouseDown(int button, int x, int y)
+	bool MouseDown(int button, int x, int y)
 	{
 		if (m_activeWindow)
 			m_activeWindow->SetActive(false);		
@@ -445,22 +451,23 @@ public:
 			m_activeWindow->SetActive(true);
 		
 		if (m_root)
-		{
-			m_root->MouseDown(button, x, y);
-		}
-
+			return m_root->MouseDown(button, x, y);
+		
+		return false;
 	}
-	void MouseUp(int button, int x, int y)
+	bool MouseUp(int button, int x, int y)
 	{
 		if (m_root)
 		{
-			m_root->MouseUp(button, x, y);
+			bool r = m_root->MouseUp(button, x, y);
 			BaseWindow* w = Hit(x, y);
 			if (w && m_activeWindow != w)
 			{
 				w->MouseDropped(m_activeWindow);
 			}
+			return r;
 		}
+		return false;
 	}
 	void MouseMove(int x, int y)
 	{

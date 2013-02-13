@@ -273,8 +273,8 @@ protected:
 		m_defvb->Rect2f(static_cast<float>(sx), static_cast<float>(sy),
 			static_cast<float>(sx + m_width), static_cast<float>(sy + m_height), static_cast<float>(m_z));
 	}
-	void ownMouseDown (int button, int x, int y){}
-	void ownMouseUp   (int button, int x, int y){}
+	bool ownMouseDown (int button, int x, int y){ return ownHit(x,y); }
+	bool ownMouseUp   (int button, int x, int y){ return ownHit(x,y); }
 	void ownMouseMove (int x, int y){}
 private:
 	skGUI::SimpleVB* m_defvb;
@@ -328,18 +328,24 @@ protected:
                              su, sv, eu, ev, du,dv);
                              
     }
-    void ownMouseDown (int button, int x, int y)
+    bool ownMouseDown (int button, int x, int y)
     {
         if (ownHit(x,y))
         {
             m_press = true;
             m_mousex = x;
             m_mousey = y;
+			return true;
         }
+		return false;
     }
-    void ownMouseUp   (int button, int x, int y)
+    bool ownMouseUp   (int button, int x, int y)
     {
+		bool r = false;
+		if (m_press)
+			r = true;
         m_press = false;
+		return r;
     }
     void ownMouseMove (int x, int y)
     {
@@ -515,8 +521,8 @@ protected:
 		m_cache_w = m_width;
 		m_cache_h = m_height;
 	}
-	void ownMouseDown (int button, int x, int y) {}
-	void ownMouseUp   (int button, int x, int y) {}
+	bool ownMouseDown (int button, int x, int y) { return false; }
+	bool ownMouseUp   (int button, int x, int y) { return false; }
 	void ownMouseMove (int x, int y) {}
 private:
 	GUIManager* m_mgr;
@@ -585,7 +591,9 @@ protected:
         const float du = 4.0f / m_tex_w;
         const float dv = -4.0f / m_tex_h;
         
-        if (m_over)
+		if (m_press)
+			m_defvb->Color4f(1.0f,0.5f,0.4f,1.0f);
+        else if (m_over)
             m_defvb->Color4f(1.0f,0.8f,0.7f,1.0f);
         else
             m_defvb->Color4f(1.0f,1.0f,1.0f,1.0f);
@@ -595,17 +603,23 @@ protected:
                              su, sv, eu, ev, du,dv);
         
     }
-    void ownMouseDown (int button, int x, int y)
+    bool ownMouseDown (int button, int x, int y)
     {
-        if (ownHit(x,y))
+        if (ownHit(x,y)) {
             m_press = true;
+			return true;
+		}
+		return false;
     }
-    void ownMouseUp   (int button, int x, int y)
+    bool ownMouseUp   (int button, int x, int y)
     {
-        if (ownHit(x,y) && m_func)
+		bool r = false;
+        if (m_press && ownHit(x,y) && m_func) {
             (*m_func)(m_thisptr);
-        
+			r = true;
+		}
         m_press = false;
+		return r;
     }
     void ownMouseMove (int x, int y)
     {
@@ -706,16 +720,22 @@ protected:
         if (m_func)
             (*m_func)(m_val, m_thisptr);
     }
-    void ownMouseDown (int button, int x, int y)
+    bool ownMouseDown (int button, int x, int y)
     {
         if (ownHit(x,y)) {
             m_press = true;
             changeVal(x / static_cast<float>(m_width));
+			return true;
         }
+		return false;
     }
-    void ownMouseUp   (int button, int x, int y)
+    bool ownMouseUp   (int button, int x, int y)
     {
+		bool r = false;
+		if (m_press)
+			r = true;
         m_press = false;
+		return r;
     }
     void ownMouseMove (int x, int y)
     {
