@@ -41,19 +41,19 @@ namespace {
 #include <stdio.h>
 #else
 
-#define GLDEBUG
+//#define GLDEBUG
 
 #endif
 
 namespace skGUI {
 #ifdef GL_DEBUG
-	inline void GL_debug_func(SimpleGraphics* g, int line)
+	inline void GL_debug_func(skGUI::SimpleGraphics* g, int line)
 	{
-		SGenum e = g->GetError();
-	/*	if(e) {
-			printf("GL ERROR(0x%X):Line(%d) - %s\n", e, line, gluErrorString(e));
+		skGUI::SGenum e = g->GetError();
+		if(e) {
+			//printf("GL ERROR(0x%X):Line(%d) - %s\n", e, line, gluErrorString(e));
 			assert(0);
-		}*/
+		}
 	}
 #endif
 

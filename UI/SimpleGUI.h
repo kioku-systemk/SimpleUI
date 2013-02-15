@@ -273,8 +273,8 @@ protected:
 		m_defvb->Rect2f(static_cast<float>(sx), static_cast<float>(sy),
 			static_cast<float>(sx + m_width), static_cast<float>(sy + m_height), static_cast<float>(m_z));
 	}
-	bool ownMouseDown (int button, int x, int y){ return ownHit(x,y); }
-	bool ownMouseUp   (int button, int x, int y){ return ownHit(x,y); }
+	bool ownMouseDown (int button, int x, int y){ return ownHit(x,y) > 0; }
+	bool ownMouseUp   (int button, int x, int y){ return ownHit(x,y) > 0; }
 	void ownMouseMove (int x, int y){}
 private:
 	skGUI::SimpleVB* m_defvb;
