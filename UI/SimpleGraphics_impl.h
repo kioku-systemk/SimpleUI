@@ -41,7 +41,7 @@ namespace {
 #include <stdio.h>
 #else
 
-//#define GLDEBUG
+#define GLDEBUG
 
 #endif
 
