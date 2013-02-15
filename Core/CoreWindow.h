@@ -40,6 +40,12 @@ public:
 	virtual void Active         (void)         = 0;
 	virtual void Toplevel       (bool top)     = 0;
     virtual void SwapBuffer     (void)         = 0;
+
+    virtual int GetWidth() const               = 0;
+    virtual int GetHeight() const              = 0;
+    
+    virtual const char* GetExePath() const     = 0;
+
 };
 
 #if defined (__APPLE__)

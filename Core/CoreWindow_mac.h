@@ -21,7 +21,7 @@
 class CoreWindow : public CoreWindowPlatform
 {
 protected:
-	CoreWindow(int x, int y, int width, int height, const char* title);
+	CoreWindow(int x, int y, int width, int height, const char* title, bool fullscreenMode = false);
 	~CoreWindow();
 public:
 
@@ -48,9 +48,16 @@ public:
     void SwapBuffer();
 	static void DoEvents(void);
 	static void MainLoop(void);
+    
+    int GetWidth() const  { return m_w; }
+    int GetHeight() const { return m_h; }
+    
+    const char* GetExePath() const;
+
 protected:
 	ObjC_ID m_win;
 	ObjC_ID m_view;
+    int m_w, m_h;
 	
 };
 

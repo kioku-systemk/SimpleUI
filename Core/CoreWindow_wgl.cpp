@@ -7,9 +7,9 @@
  */
 
 #include "CoreWindow_wgl.h"
-
 #include <gl/GL.h>
 #include <WindowsX.h>
+#include <stdio.h>
 
 CoreWindow* g_mainWin = 0;
 
@@ -20,7 +20,7 @@ CoreWindow* g_mainWin = 0;
 #endif
 
 
-bool CoreWindow::createWindow(int x, int y, int width, int height, const TCHAR* title)
+bool CoreWindow::createWindow(int x, int y, int width, int height, const TCHAR* title, bool fullscreenmode)
 {
 	WNDCLASS wc;
 	HWND     hWnd;
@@ -32,7 +32,10 @@ bool CoreWindow::createWindow(int x, int y, int width, int height, const TCHAR* 
 	WindowRect.top    = 0;
 	WindowRect.bottom = height;
 	dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
-	dwStyle   = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
+	if (fullscreenmode)
+		dwStyle = WS_POPUPWINDOW | WS_MAXIMIZE;
+	else
+		dwStyle   = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
 
 	AdjustWindowRect(&WindowRect, dwStyle, FALSE);
 
@@ -160,11 +163,13 @@ void CoreWindow::Toplevel(bool top)
 	}
 }
 
-CoreWindow::CoreWindow(int x, int y, int width, int height, const TCHAR* title)
+CoreWindow::CoreWindow(int x, int y, int width, int height, const TCHAR* title, bool fullscreenmode)
 {
-	 createWindow(x, y, width, height, title);
+	 createWindow(x, y, width, height, title, fullscreenmode);
 	 initGL(m_hWnd);
-	 resize(width, height);
+	 RECT rect;
+	 GetClientRect(m_hWnd, &rect);
+	 resize(rect.right - rect.left, rect.bottom - rect.top);
 }
 
 CoreWindow::~CoreWindow()
@@ -174,6 +179,8 @@ CoreWindow::~CoreWindow()
 
 void CoreWindow::resize(int width, int height)
 {
+	m_w = width;
+	m_h = height;
 	glViewport(0, 0, width, height);
 	glLoadIdentity();
 
@@ -358,4 +365,16 @@ HDC CoreWindow::GetHDC()
 void CoreWindow::SwapBuffer()
 {
 	SwapBuffers(m_hDC);
+}
+
+const char* CoreWindow::GetExePath() const
+{
+	char exefilepath[2048];
+	static char exepath[2048];
+	GetModuleFileName(NULL, exefilepath, sizeof(exefilepath));
+#pragma warning(push)
+#pragma warning(disable:4996)
+	_splitpath(exefilepath, 0, exepath, 0, 0);
+#pragma warning(pop)
+	return exepath;
 }

@@ -183,7 +183,7 @@ static CoreWindow* g_mainWin = 0;
 	{
 		unicode=[chrs characterAtIndex:0];
 		unicode &= 255;
-		if (32<=unicode && unicode<128)
+		if (0<=unicode && unicode<128)
 			m_ownerWin->KeyDown(unicode);
 	}
 	trace("%s : %d\n",__FUNCTION__, unicode);
@@ -205,7 +205,7 @@ static CoreWindow* g_mainWin = 0;
 	if([chrs length]>0)
 	{
 		unicode=[chrs characterAtIndex:0];
-		if (32<=unicode && unicode<128)
+		if (0<=unicode && unicode<128)
 			m_ownerWin->KeyUp(unicode);
 	}
 	trace("%s : %d\n",__FUNCTION__, unicode);
@@ -263,12 +263,12 @@ static CoreWindow* g_mainWin = 0;
 - (void) mouseMoved:(NSEvent *)theEvent
 {
 	trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
-		m_ownerWin->MouseMove((int)[theEvent locationInWindow].x, m_height - (int)[theEvent locationInWindow].y);
+	m_ownerWin->MouseMove((int)[theEvent locationInWindow].x, m_height - (int)[theEvent locationInWindow].y);
 }
 
 - (void) mouseDragged:(NSEvent *)theEvent
 {
-trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
+	trace("%s %d %d\n",__FUNCTION__,(int)[theEvent locationInWindow].x,(int)[theEvent locationInWindow].y);
 	m_ownerWin->MouseMove((int)[theEvent locationInWindow].x, m_height - (int)[theEvent locationInWindow].y);
 }
 
@@ -425,7 +425,7 @@ void CoreWindow::MainLoop()
 	}
 }
 
-CoreWindow::CoreWindow(int x, int y, int width ,int height, const char* title)
+CoreWindow::CoreWindow(int x, int y, int width ,int height, const char* title, bool fullscreenMode)
 {
 	if (g_mainWin == 0)
 		g_mainWin = this;
@@ -490,10 +490,16 @@ CoreWindow::CoreWindow(int x, int y, int width ,int height, const char* title)
 	[m_win makeKeyAndOrderFront:nil];
 	[m_win makeMainWindow];
 	
+    if (fullscreenMode)
+        [m_view enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
+    
+    NSRect rc = [m_view bounds];
+    m_w = rc.size.width;
+    m_h = rc.size.height;
 	[NSApp activateIgnoringOtherApps:YES];
 	
 	skAddMenu();
-		
+
 	[pool release];
 
 }
@@ -519,5 +525,13 @@ void CoreWindow::Toplevel(bool top)
 		[m_win setLevel:NSPopUpMenuWindowLevel];
 	else
 		[m_win setLevel:NSNormalWindowLevel];
+}
+
+const char* CoreWindow::GetExePath() const
+{
+    static char exepath[2048];
+    NSString *curDir = [[NSBundle mainBundle] bundlePath];
+    strcpy(exepath, [curDir UTF8String]);
+    return exepath;
 }
 

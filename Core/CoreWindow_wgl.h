@@ -15,7 +15,7 @@
 class CoreWindow : public CoreWindowPlatform
 {
 protected:
-	bool createWindow(int x, int y, int width, int height, const TCHAR* title);
+	bool createWindow(int x, int y, int width, int height, const TCHAR* title,  bool fullscreenmode = false);
 	
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static LRESULT CALLBACK BaseWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -26,9 +26,10 @@ protected:
 	HWND  m_hWnd;
 	HGLRC m_hRC;
 	HDC   m_hDC;
-
+	int m_w,m_h;
+	
 public:
-	CoreWindow(int x, int y, int width, int height, const TCHAR* title);
+	CoreWindow(int x, int y, int width, int height, const TCHAR* title, bool fullscreenmode = false);
 	~CoreWindow();
 
 	virtual void MouseLeftDown  (int x, int y){}
@@ -53,7 +54,11 @@ public:
 	void SwapBuffer();
 	
 	HDC GetHDC();
+	int GetWidth() const  { return m_w; }
+	int GetHeight() const { return m_h; }
 	
+	const char* GetExePath() const;
+
 	static void DoEvents();
 	static void MainLoop();
 };
