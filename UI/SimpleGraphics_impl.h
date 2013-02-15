@@ -33,7 +33,7 @@ namespace {
 
 #include <assert.h>
 
-#define GL_DEBUG
+//#define GL_DEBUG
 
 #ifdef GL_DEBUG
 #define GLDEBUG	GL_debug_func(this, __LINE__) 
@@ -51,7 +51,7 @@ namespace skGUI {
 	{
 		skGUI::SGenum e = g->GetError();
 		if(e) {
-			//printf("GL ERROR(0x%X):Line(%d) - %s\n", e, line, gluErrorString(e));
+			printf("GL ERROR(0x%X):Line(%d) - %s\n", e, line, gluErrorString(e));
 			assert(0);
 		}
 	}
