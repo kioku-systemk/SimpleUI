@@ -13,13 +13,13 @@
 #if defined(_WIN32)
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include "WGLExtention.h"
+#include "WGLExtension.h"
 #elif defined(__APPLE__)
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #include <OpenGL/glext.h>
 namespace {
-	void InitGLExtention(){}
+	void InitGLExtension(){}
 }
 #else // Linux
 #define GL_GLEXT_PROTOTYPES
@@ -27,7 +27,7 @@ namespace {
 #include <GL/glu.h>
 #include <GL/glext.h>
 namespace {
-	void InitGLExtention(){}
+	void InitGLExtension(){}
 }
 #endif
 
@@ -59,7 +59,7 @@ namespace skGUI {
 
 inline SimpleGraphics::SimpleGraphics()
 {
-	InitGLExtention();
+	InitGLExtension();
 }
 
 inline SimpleGraphics::~SimpleGraphics()

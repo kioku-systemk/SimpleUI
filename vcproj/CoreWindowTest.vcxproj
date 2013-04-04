@@ -78,7 +78,7 @@
   <ItemGroup>
     <ClCompile Include="..\Core\CoreWindow_wgl.cpp" />
     <ClCompile Include="..\test.cpp" />
-    <ClCompile Include="..\UI\WGLExtention.cpp" />
+    <ClCompile Include="..\UI\WGLExtension.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Core\CoreWindow.h" />

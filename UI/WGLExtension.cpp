@@ -73,7 +73,7 @@ PFNGLVALIDATEPROGRAMPROC glValidateProgram = 0;
 PFNGLVERTEXATTRIBPOINTERPROC glVertexAttribPointer = 0;
 
 
-bool InitGLExtention()
+bool InitGLExtension()
 {
 	glGenBuffers = (PFNGLGENBUFFERSARBPROC)wglGetProcAddress("glGenBuffersARB");
 	glBindBuffer = (PFNGLBINDBUFFERARBPROC)wglGetProcAddress("glBindBufferARB");

@@ -1,5 +1,5 @@
-#ifndef GLDEVICE_EXTENSTION
-#define GLDEVICE_EXTENSTION
+#ifndef GLDEVICE_EXTENSION
+#define GLDEVICE_EXTENSION
 
 #if defined(WIN32) || defined(WIN64)
 // Win
@@ -91,8 +91,8 @@ extern PFNGLVALIDATEPROGRAMPROC glValidateProgram;
 /*! @brief OpenGLägí£ñΩóﬂèâä˙âª
  *  @return ê¨å˜ÇµÇΩèÍçátrue, é∏îsÇµÇΩèÍçáfalse
  */
-extern "C" bool InitGLExtention();
+extern "C" bool InitGLExtension();
 
 
-#endif // GLDEVICE_EXTENSTION
+#endif // GLDEVICE_EXTENSION
 

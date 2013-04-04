@@ -21,7 +21,7 @@
     <ClCompile Include="..\Core\CoreWindow_wgl.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\UI\WGLExtention.cpp">
+    <ClCompile Include="..\UI\WGLExtension.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
