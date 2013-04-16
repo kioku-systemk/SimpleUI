@@ -1,0 +1,6 @@
+
+GLFW_HEADER = ./
+GLFW_LIB    = ./libglfw.a
+all:
+	mkdir -p uitest.app/Contents/MacOS/;
+	g++ -I$(GLFW_HEADER) -framework Cocoa -framework OpenGL -framework IOKit $(GLFW_LIB) uitest.cpp -o uitest.app/Contents/MacOS/uitest

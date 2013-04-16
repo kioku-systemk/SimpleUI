@@ -1,0 +1,11 @@
+
+Step1. Please locate GLFW file
+  ./GL/glfw.h
+  ./libglfw.a
+
+Step2. Let's make command.
+  ex. make -f Makefile.cocoa
+
+Enjoy SimpleUI
+
+
