@@ -30,7 +30,7 @@
 		77C4CE071613D2B200AE3AB7 /* mplus1cmedium.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mplus1cmedium.h; sourceTree = "<group>"; };
 		77C4CE091613D2B200AE3AB7 /* SimpleGraphics_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleGraphics_impl.h; sourceTree = "<group>"; };
 		77C4CE0A1613D2B200AE3AB7 /* SimpleGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleGraphics.h; sourceTree = "<group>"; };
-		77C4CE0B1613D2B200AE3AB7 /* simplegui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simplegui.h; sourceTree = "<group>"; };
+		77C4CE0B1613D2B200AE3AB7 /* SimpleGUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleGUI.h; sourceTree = "<group>"; };
 		77C4CE0C1613D2B200AE3AB7 /* SimpleShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleShader.h; sourceTree = "<group>"; };
 		77C4CE0D1613D2B200AE3AB7 /* SimpleTex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleTex.h; sourceTree = "<group>"; };
 		77C4CE0E1613D2B200AE3AB7 /* SimpleVB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleVB.h; sourceTree = "<group>"; };
@@ -54,7 +54,6 @@
 		77517FFB160240BA00A89B24 = {
 			isa = PBXGroup;
 			children = (
-				775180361602417100A89B24 /* OpenGL.framework */,
 				7751802C1602414D00A89B24 /* test.cpp */,
 				775180381602430700A89B24 /* UI */,
 				7751802E1602415500A89B24 /* Core */,
@@ -75,6 +74,7 @@
 		77518009160240BA00A89B24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				775180361602417100A89B24 /* OpenGL.framework */,
 				7751800A160240BA00A89B24 /* Cocoa.framework */,
 				7751800C160240BA00A89B24 /* Other Frameworks */,
 			);
@@ -126,7 +126,7 @@
 				77C4CE071613D2B200AE3AB7 /* mplus1cmedium.h */,
 				77C4CE091613D2B200AE3AB7 /* SimpleGraphics_impl.h */,
 				77C4CE0A1613D2B200AE3AB7 /* SimpleGraphics.h */,
-				77C4CE0B1613D2B200AE3AB7 /* simplegui.h */,
+				77C4CE0B1613D2B200AE3AB7 /* SimpleGUI.h */,
 				77C4CE0C1613D2B200AE3AB7 /* SimpleShader.h */,
 				77C4CE0D1613D2B200AE3AB7 /* SimpleTex.h */,
 				77C4CE0E1613D2B200AE3AB7 /* SimpleVB.h */,

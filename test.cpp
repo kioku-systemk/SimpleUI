@@ -37,7 +37,7 @@ public:
         SimpleGUI::Dialog* diag = new SimpleGUI::Dialog(m_gui, 50,50,150,130);
         m_gui->GetRoot()->AddChild(diag);
  
-        
+        m_diag = diag;
         SimpleGUI::Caption* txt = new SimpleGUI::Caption(m_gui,2,2, "Dialog", SimpleGUI::UITextSize);
         diag->AddChild(txt);
         
@@ -69,6 +69,10 @@ public:
         btn2->SetClickedFunc(clickWhite, this);
         diag->AddChild(btn2);
 
+		SimpleGUI::Check* chk = new SimpleGUI::Check(m_gui, "Alpha", 80,2);
+		chk->SetChangedFunc(changeAlphaCheck, this);
+        diag->AddChild(chk);
+
 	}
 	~MainWindow()
     {
@@ -89,6 +93,9 @@ public:
     static void clickWhite(void* thisptr){
         static_cast<MainWindow*>(thisptr)->clickWhite();
     }
+    static void changeAlphaCheck(bool state, void* thisptr){
+        static_cast<MainWindow*>(thisptr)->changeAlphaCheck(state);
+    }
     
     void changeRedSlider  (float v){ m_col[0] = v; }
     void changeGreenSlider(float v){ m_col[1] = v; }
@@ -103,6 +110,12 @@ public:
         m_slider[1]->SetValue(1.0f);
         m_slider[2]->SetValue(1.0f);
     }
+	void changeAlphaCheck(bool state) {
+		if (state)
+			m_diag->SetAlpha(0.5);
+		else
+			m_diag->SetAlpha(1.0);
+	}
 
 	void MouseLeftDown(int x, int y)
 	{
@@ -144,6 +157,7 @@ public:
 private:
     SimpleGUI::GUIManager* m_gui;
     SimpleGUI::Slider* m_slider[3];
+	SimpleGUI::Dialog* m_diag;
     int m_mode;
     float m_col[3];
 };
