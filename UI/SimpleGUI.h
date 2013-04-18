@@ -790,7 +790,7 @@ public:
 		m_thisptr = 0;
 		Caption* txt = new Caption(mgr, 0,0,caption, UITextSize, z+1);
 		m_width  = 16 + txt->GetRealWidth();
-		m_height = UITextSize;
+		m_height = static_cast<int>(UITextSize);
 		int txt_x = 16;
 		int txt_y = (16 - txt->GetHeight()) / 2;
 		txt->SetPos(txt_x, txt_y);
