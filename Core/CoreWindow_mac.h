@@ -49,10 +49,14 @@ public:
 	static void DoEvents(void);
 	static void MainLoop(void);
     
+	void GoFullscreen(bool fullscreen, bool cursor=true);
+
     int GetWidth() const  { return m_w; }
     int GetHeight() const { return m_h; }
     
     const char* GetExePath() const;
+	const char* FileOpenDialog(const char* ext) const;
+	const char* FileSaveDialog(const char* ext) const;
 
 protected:
 	ObjC_ID m_win;

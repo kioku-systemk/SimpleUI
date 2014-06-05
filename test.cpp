@@ -13,7 +13,11 @@
 #include "UI/SimpleGUI.h"
 
 // GL Headers
-#if defined(__APPLE__)
+
+#if defined(__EMSCRIPTEN__)
+#include <GLES2/gl2.h>
+
+#elif defined(__APPLE__)
 #include <OpenGL/gl.h>
 #else
 #include <GL/gl.h>

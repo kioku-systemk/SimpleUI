@@ -1,0 +1,9 @@
+
+DEFINES =-O2 -D__EMSCRIPTEN__
+CXX=emcc
+SRC=test.cpp
+COREWIN=Core/CoreWindow_egl.cpp
+
+
+all:
+	$(CXX) $(DEFINES) $(SRC) $(COREWIN) $(LIBS) -o Test.html

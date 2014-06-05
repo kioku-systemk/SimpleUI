@@ -1,13 +1,13 @@
 /*
- *  CoreWindow_x11.h
+ *  CoreWindow_egl.h
  *
- *  Created by kioku on 13/01/11.
+ *  Created by kioku on 14/06/05.
  *  Copyright 2013 System K. All rights reserved.
  *
  */
 
-#ifndef COREWINDOW_X11_HEADER
-#define COREWINDOW_X11_HEADER
+#ifndef COREWINDOW_EGL_HEADER
+#define COREWINDOW_EGL_HEADER
 
 #include "CoreWindow.h"
 
@@ -59,7 +59,7 @@ protected:
 void CoreWindow_DoEvents();
 
 
-#endif // COREWINDOW_X11_HEADER
+#endif // COREWINDOW_EGL_HEADER
 
 
 

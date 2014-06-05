@@ -41,14 +41,21 @@ public:
 	virtual void Toplevel       (bool top)     = 0;
     virtual void SwapBuffer     (void)         = 0;
 
+    virtual void GoFullscreen(bool fullscreen, bool cursor=true) = 0;
+    
     virtual int GetWidth() const               = 0;
     virtual int GetHeight() const              = 0;
     
     virtual const char* GetExePath() const     = 0;
+	virtual const char* FileOpenDialog(const char* ext) const = 0;
+	virtual const char* FileSaveDialog(const char* ext) const = 0;
+
 
 };
 
-#if defined (__APPLE__)
+#if defined(__EMSCRIPTEN__)
+#include "CoreWindow_egl.h"
+#elif defined (__APPLE__)
 #include "CoreWindow_mac.h"
 #elif defined(_WIN32)
 #include "CoreWindow_wgl.h"

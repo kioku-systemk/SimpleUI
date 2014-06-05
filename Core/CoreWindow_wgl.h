@@ -27,6 +27,8 @@ protected:
 	HGLRC m_hRC;
 	HDC   m_hDC;
 	int m_w,m_h;
+    bool m_inited;
+    int m_restore_width,m_restore_height;
 	
 public:
 	CoreWindow(int x, int y, int width, int height, const TCHAR* title, bool fullscreenmode = false);
@@ -52,15 +54,18 @@ public:
 	virtual void Toplevel       (bool top);
 	void Active(void);
 	void SwapBuffer();
-	
+	static void DoEvents();
+	static void MainLoop();
+    
 	HDC GetHDC();
 	int GetWidth() const  { return m_w; }
 	int GetHeight() const { return m_h; }
 	
-	const char* GetExePath() const;
+	void GoFullscreen(bool fullscreen,bool cursor=true);
 
-	static void DoEvents();
-	static void MainLoop();
+	const char* GetExePath() const;
+	const char* FileOpenDialog(const char* ext) const;
+	const char* FileSaveDialog(const char* ext) const;
 };
 
 

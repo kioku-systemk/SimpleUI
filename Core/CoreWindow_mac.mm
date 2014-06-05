@@ -23,6 +23,9 @@ inline void trace(const char* f, ...)
 }
 #endif
 
+#include <string>
+#include <vector>
+
 
 static CoreWindow* g_mainWin = 0;
 
@@ -109,6 +112,10 @@ static CoreWindow* g_mainWin = 0;
 	m_ownerWin = win;
 }
 
+- (BOOL)canBecomeKeyView
+{
+    return YES;
+}
 
 - (BOOL)acceptsFirstResponder
 {
@@ -324,7 +331,22 @@ static CoreWindow* g_mainWin = 0;
 @end
 
 namespace {
-   
+std::vector<std::string> split(std::string str, const std::string& delim)
+{
+	std::vector<std::string> result;
+	size_t cutAt;
+	while( (cutAt = str.find_first_of(delim)) != str.npos ) {
+		if(cutAt > 0) {
+			result.push_back(str.substr(0, cutAt));
+		}
+		str = str.substr(cutAt + 1);
+	}
+	if (str.length() > 0) {
+		result.push_back(str);
+	}
+	return result;
+}
+	
 void skAddMenu(void)
 {
  	NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
@@ -432,7 +454,12 @@ CoreWindow::CoreWindow(int x, int y, int width ,int height, const char* title, b
 	NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
 		
 	[NSApplication sharedApplication];
-		
+
+	// Set Front process (need for keyboard and mouse events at console mode)
+	ProcessSerialNumber psn = { 0, kCurrentProcess };
+    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+    SetFrontProcess(&psn);
+	
 	[NSApp finishLaunching];
 
     
@@ -527,6 +554,19 @@ void CoreWindow::Toplevel(bool top)
 		[m_win setLevel:NSNormalWindowLevel];
 }
 
+void CoreWindow::GoFullscreen(bool fullscreen,bool cursor)
+{
+    if (!cursor)
+        [NSCursor hide];
+    else
+        [NSCursor unhide];
+    
+    if (fullscreen)
+        [m_view enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
+    else
+        [m_view exitFullScreenModeWithOptions:nil];
+}
+
 const char* CoreWindow::GetExePath() const
 {
     static char exepath[2048];
@@ -535,3 +575,51 @@ const char* CoreWindow::GetExePath() const
     return exepath;
 }
 
+const char* CoreWindow::FileOpenDialog(const char* ext) const
+{
+    NSOpenGLContext *cctx = [NSOpenGLContext currentContext];
+	static char strbuf[1024] = {};
+	std::vector<std::string> exts = split(std::string(ext), "|");
+	NSMutableArray *allowedFileTypes = [NSMutableArray array];
+	for (size_t i = 0; i < exts.size(); ++i){
+		NSString* nsext = [NSString stringWithUTF8String:exts[i].c_str()];
+		[allowedFileTypes addObject:nsext];
+	}
+	NSOpenPanel *openPanel	= [NSOpenPanel openPanel];
+    [openPanel setAllowedFileTypes:allowedFileTypes];
+    NSInteger pressedButton = [openPanel runModal];
+
+	if( pressedButton == NSOKButton ){
+		NSURL * filePath = [openPanel URL];
+		NSString* nss = [filePath path];
+		strncpy(strbuf, [nss UTF8String], 1024);
+        [cctx makeCurrentContext];
+		return strbuf;
+	}
+    [cctx makeCurrentContext];
+	return 0;
+}
+const char* CoreWindow::FileSaveDialog(const char* ext) const
+{
+    NSOpenGLContext *cctx = [NSOpenGLContext currentContext];
+	static char strbuf[1024] = {};
+	std::vector<std::string> exts = split(std::string(ext), "|");
+	NSMutableArray *allowedFileTypes = [NSMutableArray array];
+	for (size_t i = 0; i < exts.size(); ++i){
+		NSString* nsext = [NSString stringWithUTF8String:exts[i].c_str()];
+		[allowedFileTypes addObject:nsext];
+	}
+	NSSavePanel *savePanel	= [NSSavePanel savePanel];
+    [savePanel setAllowedFileTypes:allowedFileTypes];
+    NSInteger pressedButton = [savePanel runModal];
+    
+    if( pressedButton == NSOKButton ){
+        NSURL * filePath = [savePanel URL];
+		NSString* nss = [filePath path];
+		strncpy(strbuf, [nss UTF8String], 1024);
+        [cctx makeCurrentContext];
+		return strbuf;
+    }
+    [cctx makeCurrentContext];
+	return 0;
+}

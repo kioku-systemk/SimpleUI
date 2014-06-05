@@ -10,7 +10,14 @@
 #error "You must include from SimpleGraphics.h. Do not include this file."
 #else
 
-#if defined(_WIN32)
+#if defined(__EMSCRIPTEN__)
+#include <GLES2/gl2.h>
+#include <EGL/egl.h>
+
+namespace {
+	void InitGLExtension(){}
+}
+#elif defined(_WIN32)
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "WGLExtension.h"

@@ -61,7 +61,7 @@ public:
 		// Update
 		g->BindTexture(SG_TEXTURE_2D, m_tex);
 		if (m_color == COLOR_RGBA8888)
-			g->TexImage2D(SG_TEXTURE_2D, 0, SG_RGBA, m_width, m_height, 0, SG_BGRA, SG_UNSIGNED_BYTE, m_buffer);
+			g->TexImage2D(SG_TEXTURE_2D, 0, SG_RGBA, m_width, m_height, 0, SG_RGBA, SG_UNSIGNED_BYTE, m_buffer);
 		else
 			g->TexImage2D(SG_TEXTURE_2D, 0, SG_LUMINANCE, m_width, m_height, 0, SG_LUMINANCE, SG_UNSIGNED_BYTE, m_buffer);
 	}
