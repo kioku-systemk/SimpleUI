@@ -69,13 +69,15 @@ bool TGALoader(const unsigned char* buffer, int& w, int& h, const unsigned char*
 	return true;
 }
     
+#define GLPRECISION "#ifdef GL_ES\nprecision highp float;\n#endif\n"
+    
 class GUIManager : public skGUI::GUIManager
 {
 public:
 	GUIManager() : skGUI::GUIManager()
 	{
-		static const char* vshader = STRINGIFY(
-			uniform mat4 proj;
+		static const char* vshader = GLPRECISION STRINGIFY(
+            uniform mat4 proj;
 			attribute vec3 pos;
 			attribute vec4 col;
 			attribute vec2 uv;
@@ -87,15 +89,15 @@ public:
 				gl_Position = proj * vec4(pos,1);
 			}
 		);
-		static const char* fshader = STRINGIFY(
-		uniform sampler2D texture;
-		uniform float mono;
-	    varying vec4 color;
-		varying vec2 tex;
-		void main(void) {
-			vec4 t = texture2D(texture, tex);
-			gl_FragColor = color * ((t.rrrr - t.rgba) * mono + t.rgba);
-		}
+		static const char* fshader = GLPRECISION STRINGIFY(
+            uniform sampler2D texture;
+            uniform float mono;
+            varying vec4 color;
+            varying vec2 tex;
+            void main(void) {
+                vec4 t = texture2D(texture, tex);
+                gl_FragColor = color * ((t.rrrr - t.rgba) * mono + t.rgba);
+            }
 		);
 
 		g = new skGUI::SimpleGraphics();
@@ -109,8 +111,14 @@ public:
 			m_deftex = new skGUI::SimpleTex(g, tw, th);
 			unsigned char* data = m_deftex->Map();
 			// upsidedown
-			for (int y = 0; y < th; ++y)
-				memcpy(data + tw * (th - y - 1) * 4, buf + tw * y * 4, tw * 4);
+			for (int y = 0; y < th; ++y){
+                for (int x = 0; x < tw*4; x += 4){
+                    data[tw * (th - y - 1) * 4 + x    ] = buf[tw * y * 4 + x + 2];
+                    data[tw * (th - y - 1) * 4 + x + 1] = buf[tw * y * 4 + x + 1];
+                    data[tw * (th - y - 1) * 4 + x + 2] = buf[tw * y * 4 + x    ];
+                    data[tw * (th - y - 1) * 4 + x + 3] = buf[tw * y * 4 + x + 3];
+                }
+            }
 			m_deftex->Unmap();
 		}
 	}

@@ -53,8 +53,8 @@ public:
 		if (m_tex == -1){
 			g->GenTextures(1, &m_tex);
 			g->BindTexture(SG_TEXTURE_2D, m_tex);
-			g->TexParameteri(SG_TEXTURE_2D, SG_TEXTURE_MIN_FILTER, SG_NEAREST);// SG_LINEAR);
-			g->TexParameteri(SG_TEXTURE_2D, SG_TEXTURE_MAG_FILTER, SG_NEAREST);//SG_LINEAR);
+			g->TexParameteri(SG_TEXTURE_2D, SG_TEXTURE_MIN_FILTER, SG_LINEAR);
+			g->TexParameteri(SG_TEXTURE_2D, SG_TEXTURE_MAG_FILTER, SG_LINEAR);
 			g->TexParameteri(SG_TEXTURE_2D, SG_TEXTURE_WRAP_S, SG_CLAMP_TO_EDGE);
 			g->TexParameteri(SG_TEXTURE_2D, SG_TEXTURE_WRAP_T, SG_CLAMP_TO_EDGE);
 		}
